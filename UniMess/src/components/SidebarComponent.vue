@@ -1,20 +1,25 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useUiStore } from '@/stores/useUiStore';
 
 export default defineComponent({
     name: 'SidebarComponent',
-    props: {
-        isVisible: {
-            type: Boolean,
-            required: true
-        }
+    // props: {
+    //     isVisible: {
+    //         type: Boolean,
+    //         required: true
+    //     }
+    // }
+    setup() {
+        const uiStore = useUiStore();
+        return { uiStore };
     }
 })
 </script>
 
 <template>
     <Transition name="sidebar">
-        <div class="sidebar" v-if="isVisible">
+        <div class="sidebar" v-if="uiStore.isSidebarVisible">
             <div class="sidebar-header">
                 <h2>Contacts</h2>
             </div>

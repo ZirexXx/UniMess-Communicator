@@ -1,26 +1,31 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useUiStore } from '@/stores/useUiStore';
 
 export default defineComponent({
-    data() {
-        return {
-            isSidebarVisible: true
-        };
+    setup() {
+        const uiStore = useUiStore();
+        return { uiStore };
     },
-    methods: {
-        toggleSidebar() {
-            this.isSidebarVisible = !this.isSidebarVisible;
-            this.$emit('toggle-sidebar');
-        }
-    }
+    // data() {
+    //     return {
+    //         isSidebarVisible: true
+    //     };
+    // },
+    // methods: {
+    //     toggleSidebar() {
+    //         this.isSidebarVisible = !this.isSidebarVisible;
+    //         this.$emit('toggle-sidebar');
+    //     }
+    // }
 })
 </script>
 
 <template>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400;700" />
     <nav class="navbar">
-        <span class="material-symbols-outlined" style="cursor: pointer;" @click="toggleSidebar">
-            {{ isSidebarVisible ? 'menu_open' : 'menu' }}
+        <span class="material-symbols-outlined" style="cursor: pointer;" @click="uiStore.toggleSidebarVisibility">
+            {{ uiStore.isSidebarVisible ? 'menu_open' : 'menu' }}
         </span>
         <img id="logo" src="../../public/unimess.ico" style="border-radius: 50%;" />
         <span class="heading">UniMess</span>
