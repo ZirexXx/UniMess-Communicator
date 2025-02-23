@@ -22,6 +22,9 @@ export default defineComponent({
                 <div class="chat-content">content!</div>
                 <div class="chat-tools">
                     <input type="text" placeholder="Type a message..." />
+                    <button class="send-button">
+                        <span class="material-symbols-outlined">send</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -69,6 +72,9 @@ export default defineComponent({
     box-sizing: border-box;
     margin-top: auto;
     margin-bottom: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
     input {
         width: 100%;
@@ -91,5 +97,27 @@ export default defineComponent({
             background-color: rgba(200, 200, 200, 0.5);
         }
     }
-}
+
+    .send-button {
+        margin-inline: 5px;
+        padding: 5px;
+        border-radius: 50%;
+        color: white;
+        background-color: rgba(132,51,166, 1);
+        box-shadow: 0 0 10px rgba(132,51,166, 0.5);
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        
+        &:hover {
+            background-color: white;
+            color: rgba(132,51,166, 1);
+            // box-shadow: 0 0 20px rgba(132,51,166, 1);
+            box-shadow: 0 0 10px purple;
+            cursor: pointer;
+        }
+    }
+}  
 </style>

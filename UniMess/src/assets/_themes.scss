@@ -1,0 +1,13 @@
+:root {
+    --bg-color: linear-gradient(-45deg, #0a001f, #1b0738, #3a0d5e, #5b1780, #8433a6, #1c2040);
+    --stars-bg: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+}
+
+[data-theme="sky"] {
+    --bg-color: linear-gradient(-45deg, #0a001f, #1b0738, #3a0d5e, #5b1780, #8433a6, #1c2040);
+}
+
+
+[data-theme="aurora"] {
+    --bg-color: linear-gradient(135deg, #040b14, #0b1f2e, #123b40, #256d5f, #3b9270, #5ebea4);
+}
