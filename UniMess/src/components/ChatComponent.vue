@@ -1,6 +1,8 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed, ref, onMounted } from 'vue';
 import MessageComponent from '@/components/MessageComponent.vue';
+import { useChatStore } from '@/stores/chatStore';
+import { connectWebSocket, sendPrivateMessage } from '@/api/chat';
 
 export default defineComponent({
     name: 'ChatComponent',
@@ -13,10 +15,77 @@ export default defineComponent({
     components: {
         MessageComponent
     },
-})
+    setup() {
+        const chatStore = useChatStore();
+        const newMessage = ref("");
+        const userId = ref("");
+        const recipientId = ref("");
+        const recipientName = ref("Your Friend");
+
+        onMounted(() => {
+            connectWebSocket((generatedUserId: string) => {
+                userId.value = generatedUserId;
+                chatStore.setUserId(generatedUserId);
+            }, (msg) => {
+                chatStore.addMessage(msg);
+            });
+
+            selectRandomRecipient();
+        });
+
+        function sendMessage() {
+            if (newMessage.value.trim() !== "" && recipientId.value) {
+                sendPrivateMessage(recipientId.value, newMessage.value);
+                chatStore.addMessage({ sender: userId.value, message: newMessage.value, id: Date.now() });
+                newMessage.value = "";
+            }
+        }
+
+        function selectRandomRecipient() {
+            const testUsers = [
+                { id: "user123", name: "Alice" },
+                { id: "user456", name: "Bob" }
+            ];
+
+            const randomUser = testUsers[Math.floor(Math.random() * testUsers.length)];
+
+            recipientId.value = randomUser.id;
+            recipientName.value = randomUser.name;
+        }
+
+        return { chatStore, newMessage, sendMessage, userId, recipientId, recipientName };
+    }
+});
 </script>
 
 <template>
+    <div class="chat-wrapper">
+        <div class="chat-window">
+            <div class="chat-header">
+                <img id="avatar" src="../assets/avatar.png" width="40" height="40" />
+                <span>{{ recipientName || "Your Friend" }}</span>
+            </div>
+
+            <div class="chat-content">
+                <MessageComponent 
+                    v-for="message in chatStore.messages" 
+                    :key="message.id" 
+                    :sender="message.sender" 
+                    :message="message.message" 
+                />
+            </div>
+
+            <div class="chat-tools">
+                <input v-model="newMessage" type="text" placeholder="Type a message..." @keyup.enter="sendMessage" />
+                <button class="send-button" @click="sendMessage">
+                    <span class="material-symbols-outlined">send</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- <template>
         <div class="chat-wrapper">
             <div class="chat-window">
                 <div class="chat-header">
@@ -24,6 +93,7 @@ export default defineComponent({
                     <span>Your Friend</span>
                 </div>
                 <div class="chat-content">
+                    <MessageComponent v-for="message in chatStore.messages" :key="message.id" :sender="message.sender" :message="message.message" />
                     <MessageComponent sender="they" message="Hello!" />
                     <MessageComponent sender="you" message="Hi!" />
                     <MessageComponent sender="they" message="How are you?" />
@@ -59,7 +129,7 @@ export default defineComponent({
                 </div>
             </div>
         </div>
-</template>
+</template> -->
 
 <style scoped lang="scss">
 .chat-wrapper {

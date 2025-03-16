@@ -1,26 +1,27 @@
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useChatStore } from '@/stores/chatStore';
 
 export default defineComponent({
     name: 'MessageComponent',
     props: {
-        sender: {
-            type: String,
-            required: true
-        },
-        message: {
-            type: String,
-            required: true
-        }
+        sender: { type: String, required: true },
+        message: { type: String, required: true }
     },
-    mounted() {
-        console.log('MessageComponent mounted');
+    setup() {
+        const chatStore = useChatStore();
+        const currentUserId = computed(() => chatStore.userId);
+        console.log('currentUserId: ', currentUserId.value);
+
+        return { currentUserId };
     }
-})
+});
 </script>
 
 <template>
-    <div class="message" :class="{ 'you': sender === 'you', 'they': sender === 'they' }">{{ message }}</div>
+    <div class="message" :class="{ 'you': sender === currentUserId, 'they': sender !== currentUserId }">
+        {{ message }}
+    </div>
 </template>
 
 <style>
@@ -33,15 +34,17 @@ export default defineComponent({
     background-color: rgba(200, 200, 200, 0.5);
     box-shadow: -2px 3px 5px rgba(30, 30, 30, 0.5);
     transition: background-color 0.1s ease-in-out;
-
-    @media (max-width: 800px) {
-        max-width: 40ch;
-    }
 }
 
 .message.you {
     margin-left: auto;
     background-color: rgba(132, 51, 166, 0.8);
     box-shadow: 2px 3px 5px rgba(30, 30, 30, 0.5);
+    color: white;
+}
+
+.message.they {
+    background-color: rgba(200, 200, 200, 0.8);
+    color: black;
 }
 </style>
