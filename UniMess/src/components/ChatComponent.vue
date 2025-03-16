@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import MessageComponent from '@/components/MessageComponent.vue';
 
 export default defineComponent({
     name: 'ChatComponent',
@@ -8,7 +9,10 @@ export default defineComponent({
             type: Boolean,
             required: true
         }
-    }
+    },
+    components: {
+        MessageComponent
+    },
 })
 </script>
 
@@ -19,7 +23,34 @@ export default defineComponent({
                     <img id="avatar" src="../assets/avatar.png" width="40" height="40" />
                     <span>Your Friend</span>
                 </div>
-                <div class="chat-content">content!</div>
+                <div class="chat-content">
+                    <MessageComponent sender="they" message="Hello!" />
+                    <MessageComponent sender="you" message="Hi!" />
+                    <MessageComponent sender="they" message="How are you?" />
+                    <MessageComponent sender="you" message="I'm fine, thank you!" />
+                    <MessageComponent sender="they" message="That's great!" />
+                    <MessageComponent sender="they" message="How's your day going?" />
+                    <MessageComponent sender="you" message="It's going well, thank you!" />
+                    <MessageComponent sender="they" message="That's good to hear!" />
+                    <MessageComponent sender="they" message="What are you up to?" />
+                    <MessageComponent sender="you" message="Just working on a project." />
+                    <MessageComponent sender="they" message="That's cool!" />
+                    <MessageComponent sender="they" message="What project are you working on?" />
+                    <MessageComponent sender="you" message="I'm working on a chat application." />
+                    <MessageComponent sender="they" message="That's interesting!" />
+                    <MessageComponent sender="they" message="What's it called?" />
+                    <MessageComponent sender="you" message="It's called UniMess." />
+                    <MessageComponent sender="they" message="That's a cool name!" />
+                    <MessageComponent sender="they" message="What features does it have?" />
+                    <MessageComponent sender="you" message="It has a sidebar, a chat window, and a message component. It has a sidebar, a chat window, and a message component. It has a sidebar, a chat window, and a message component. It has a sidebar, a chat window, and a message component." />
+                    <MessageComponent sender="they" message="That's awesome!" />
+                    <MessageComponent sender="they" message="I can't wait to try it out!" />
+                    <MessageComponent sender="you" message="I'm glad you're excited!" />
+                    <MessageComponent sender="they" message="I'll be sure to tell my friends about it!" />
+                    <MessageComponent sender="you" message="That would be great!" />
+                    <MessageComponent sender="they" message="I'll see you later!" />
+                    <MessageComponent sender="you" message="Goodbye!" />
+                </div>
                 <div class="chat-tools">
                     <input type="text" placeholder="Type a message..." />
                     <button class="send-button">
@@ -64,6 +95,13 @@ export default defineComponent({
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.chat-content {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .chat-tools {
