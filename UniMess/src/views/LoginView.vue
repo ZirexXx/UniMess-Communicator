@@ -29,6 +29,7 @@
                                 <button type="button">Sign Up</button>
                                 <button type="submit">Login</button>
                             </div>
+                            <a class="forgot-password">Forgot password?</a>
                         </form>
                     </div>
                 </div>
@@ -172,6 +173,19 @@ main {
                             color: rgba(132,51,166, 1);
                             box-shadow: 0 0 10px rgba(132,51,166, 1);
                         }
+                    }
+                }
+
+                .forgot-password {
+                    font-size: 0.6em;
+                    color: #007bcc;
+
+                    &:hover, &:focus {
+                        background: none;
+                        color: #007bee;
+                        cursor: pointer;
+                        text-decoration: underline;
+                        transition: color 0.2s ease-in-out;
                     }
                 }
             }
