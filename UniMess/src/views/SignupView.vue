@@ -4,7 +4,7 @@
 <template>
     <main>
         <div class="main-wrapper">
-            <div class="login-container">
+            <div class="signup-container">
                 <div class="flex-row">
                     <div class="welcome">
                         <div class="text-wrapper">
@@ -14,22 +14,26 @@
                             <p>Connect with the universe.</p>
                         </div>
                     </div>
-                    <div class="login-form">
-                        <h2>Login</h2>
+                    <div class="signup-form">
+                        <h2>Sign up</h2>
                         <form>
-                            <div class="input-group">
+                            <div class="input-group flex-row gap">
                                 <!-- <label for="username">Username</label> -->
-                                <input type="text" id="username" placeholder="Username" required />
+                                <input type="text" id="username" placeholder="First Name" required />
+                                <input type="text" id="username" placeholder="Last Name" required />
+                            </div>
+                            <div class="input-group">
+                                <input type="email" id="email" placeholder="Email" requried />
                             </div>
                             <div class="input-group">
                                 <!-- <label for="password">Password</label> -->
                                 <input type="password" id="password" placeholder="Password" required />
+                                <input type="password" id="confirm-password" placeholder="Confirm Password" required />
                             </div>
                             <div class="button-group">
-                                <button type="button" @click="() => $router.push('/signup')">Sign Up</button>
-                                <button type="submit">Login</button>
+                                <button type="submit">Sign Up</button>
                             </div>
-                            <a class="forgot-password" href="/forgot-password">Forgot password?</a>
+                            <a class="login-button" @click="() => $router.push('/login')">Already have an account? Log in.</a>
                         </form>
                     </div>
                 </div>
@@ -44,6 +48,10 @@ main {
     z-index: 1;
 }
 
+.gap {
+    gap: 0.5rem;
+}
+
 .main-wrapper {
     display: flex;
     justify-content: center;
@@ -52,7 +60,7 @@ main {
     width: 100%;
     font-size: 1.5em;
 
-    .login-container {
+    .signup-container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -87,7 +95,7 @@ main {
                 }
             }
 
-            .login-form {
+            .signup-form {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
@@ -176,7 +184,7 @@ main {
                     }
                 }
 
-                .forgot-password {
+                .login-button {
                     font-size: 0.6em;
                     color: #007bcc;
 

@@ -4,32 +4,20 @@
 <template>
     <main>
         <div class="main-wrapper">
-            <div class="login-container">
+            <div class="forgotten-password-container">
                 <div class="flex-row">
-                    <div class="welcome">
-                        <div class="text-wrapper">
-                            <h1>Welcome</h1> 
-                            <h1>to</h1> 
-                            <h1>UniMess</h1>
-                            <p>Connect with the universe.</p>
-                        </div>
-                    </div>
-                    <div class="login-form">
-                        <h2>Login</h2>
+                    <div class="forgotten-password-form">
+                        <h2>Forgot password?</h2>
                         <form>
                             <div class="input-group">
-                                <!-- <label for="username">Username</label> -->
-                                <input type="text" id="username" placeholder="Username" required />
-                            </div>
-                            <div class="input-group">
-                                <!-- <label for="password">Password</label> -->
-                                <input type="password" id="password" placeholder="Password" required />
+                                <label for="email">
+                                    <p>We will send a reset link to your email address</p>
+                                </label>
+                                <input type="email" id="email" placeholder="Email" required />
                             </div>
                             <div class="button-group">
-                                <button type="button" @click="() => $router.push('/signup')">Sign Up</button>
-                                <button type="submit">Login</button>
+                                <button type="submit" @click="() => $router.push('/reset-password')">Submit</button>
                             </div>
-                            <a class="forgot-password" href="/forgot-password">Forgot password?</a>
                         </form>
                     </div>
                 </div>
@@ -52,7 +40,7 @@ main {
     width: 100%;
     font-size: 1.5em;
 
-    .login-container {
+    .forgotten-password-container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -70,24 +58,7 @@ main {
             align-items: center;
             justify-content: center;
 
-            .welcome {
-                width: 18ch;
-                text-align: right;
-                border-right: 2px solid rgba(200, 200, 200, 0.3);
-
-                .text-wrapper {
-                    padding-right: 0.75rem;
-                    h1 {
-                        line-height: 1;
-                    }
-
-                    p {
-                        margin-top: 2rem;
-                    }
-                }
-            }
-
-            .login-form {
+            .forgotten-password-form {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;

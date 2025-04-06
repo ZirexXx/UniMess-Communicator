@@ -4,32 +4,18 @@
 <template>
     <main>
         <div class="main-wrapper">
-            <div class="login-container">
+            <div class="reset-password-container">
                 <div class="flex-row">
-                    <div class="welcome">
-                        <div class="text-wrapper">
-                            <h1>Welcome</h1> 
-                            <h1>to</h1> 
-                            <h1>UniMess</h1>
-                            <p>Connect with the universe.</p>
-                        </div>
-                    </div>
-                    <div class="login-form">
-                        <h2>Login</h2>
+                    <div class="reset-password-form">
+                        <h2>Reset your password</h2>
                         <form>
                             <div class="input-group">
-                                <!-- <label for="username">Username</label> -->
-                                <input type="text" id="username" placeholder="Username" required />
-                            </div>
-                            <div class="input-group">
-                                <!-- <label for="password">Password</label> -->
-                                <input type="password" id="password" placeholder="Password" required />
+                                <input type="password" id="password" placeholder="New password" required />
+                                <input type="password" id="confirm-password" placeholder="Confirm password" required />
                             </div>
                             <div class="button-group">
-                                <button type="button" @click="() => $router.push('/signup')">Sign Up</button>
-                                <button type="submit">Login</button>
+                                <button type="submit">Submit</button>
                             </div>
-                            <a class="forgot-password" href="/forgot-password">Forgot password?</a>
                         </form>
                     </div>
                 </div>
@@ -52,7 +38,7 @@ main {
     width: 100%;
     font-size: 1.5em;
 
-    .login-container {
+    .reset-password-container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -70,24 +56,7 @@ main {
             align-items: center;
             justify-content: center;
 
-            .welcome {
-                width: 18ch;
-                text-align: right;
-                border-right: 2px solid rgba(200, 200, 200, 0.3);
-
-                .text-wrapper {
-                    padding-right: 0.75rem;
-                    h1 {
-                        line-height: 1;
-                    }
-
-                    p {
-                        margin-top: 2rem;
-                    }
-                }
-            }
-
-            .login-form {
+            .reset-password-form {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
@@ -111,6 +80,7 @@ main {
                         font-size: 1.25rem;
                         // color: white;
                         color: rgba(132,51,166, 1);
+                        margin-bottom: 0.2rem;;
 
                         &:focus {
                             outline: none;
@@ -173,19 +143,6 @@ main {
                             color: rgba(132,51,166, 1);
                             box-shadow: 0 0 10px rgba(132,51,166, 1);
                         }
-                    }
-                }
-
-                .forgot-password {
-                    font-size: 0.6em;
-                    color: #007bcc;
-
-                    &:hover, &:focus {
-                        background: none;
-                        color: #007bee;
-                        cursor: pointer;
-                        text-decoration: underline;
-                        transition: color 0.2s ease-in-out;
                     }
                 }
             }
